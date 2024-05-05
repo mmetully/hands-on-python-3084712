@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-with open("laureates.csv", "r") as f:
+with open("/workspaces/hands-on-python-3084712/Ex_Files/04_04/laureates.csv", "r") as f:
     reader = csv.DictReader(f)
     laureates = list(reader)
 
@@ -27,8 +27,9 @@ def laureate_list():
     # tip: remember that laureate["name"] contains a first name
     for laureate in laureates:
         surname = laureate["surname"].lower()
+        name = laureate["name"].lower()
         # your code here
-        if search_string in surname:
+        if (search_string in surname) or (search_string in name):
             results.append(laureate)
 
     return jsonify(results)
